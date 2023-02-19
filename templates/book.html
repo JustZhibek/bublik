@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Book</title>
-</head>
-<body>
-<div>
-  <button><a href="http://127.0.0.1:8000/admin/">В панель управления</a></button>
-  <ul>
-    {% for i in show %}
-    <li>
-      <h1>Название книги: {{i.title}}</h1>
-      <p>Тип: {{i.types}}</p>
-      <p>Цена: {{i.price}} сом</p>
-      <button><a href="/book/{{i.id}}">Подробнее</a></button>
-    </li>
-
-    {% endfor %}
-  </ul>
+{% include 'header.html' %}
+<center>
+  {% for i in book %}
+  <br><br>
+  <hr><hr>
+<div class="card" style="width: 18rem;">
+  <img src="{{i.image.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{i.title}}</h5>
+    <p class="card-text">{{i.description}}</p>
+    <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+  </div>
 </div>
+  <br><br>
+  <hr>
+  <hr>
+{% endfor %}
 
-</body>
-</html>
+</center>
+{% include 'footer.html' %}
+

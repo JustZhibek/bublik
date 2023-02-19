@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>TvShow Detail</title>
-</head>
-<body>
+{% include 'header.html' %}
+
 <center>
   <h1>Название фильма<br>{{show_id.title}}</h1>
   <p>Описание фильма:<br>{{show_id.description}}</p>
@@ -17,5 +12,4 @@
   <p>Цена:<br>{{show_id.price}} сом</p>
 </center>
 
-</body>
-</html>
+{% include 'footer.html' %}

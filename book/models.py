@@ -1,6 +1,6 @@
 from django.db import models
 
-class lost(models.Model):
+class Lost(models.Model):
 
     TYPES = (
         ('Fantasy', 'Фэнтези'),
@@ -10,7 +10,7 @@ class lost(models.Model):
 )
     title = models.CharField('Название книги', max_length=190)
     description = models.TextField('Описание книги')
-    genre = models.CharField(max_length=100, choices=TYPES)
+    types = models.CharField(max_length=100, choices=TYPES)
     image = models.ImageField(upload_to='')
     price = models.PositiveIntegerField('цена', null=True)
 

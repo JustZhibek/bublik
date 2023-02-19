@@ -1,0 +1,37 @@
+body{
+    background: url('https://static.vecteezy.com/system/resources/previews/004/968/002/original/cute-abstract-modern-background-free-vector.jpg')
+}
+
+footer {
+  display: block;
+    text-align: center;
+  padding: 3px;
+  background-color: DarkSalmon;
+  color: black;
+}
+
+/*hr*/
+ hr {
+    border: none; /* Убираем границу для браузера Firefox */
+    color: red; /* Цвет линии для остальных браузеров */
+    background-color: red; /* Цвет линии для браузера Firefox и Opera */
+    height: 10px; /* Толщина линии */
+   }
+
+
+/*body{*/
+/*    background-color: indianred;*/
+/*    color: aliceblue;*/
+/*    front-family: Calibri;*/
+/*}*/
+
+/*!*селектор тега*!*/
+
+/*h1{*/
+/*    color:navy;*/
+/*}*/
+
+/*!*селектор *!*/
+/*. hello{*/
+/*    color:chartreuse;*/
+/*}*/
