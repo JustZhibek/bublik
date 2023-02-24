@@ -19,6 +19,8 @@ class TVShow(models.Model):
     genre = models.CharField(max_length=100, choices=GENRE)
     video = models.URLField()
     price = models.PositiveIntegerField('Цена билета', null=True)
+    created_dates = models.DateTimeField(auto_now_add=True, null=True)
+    updated_dates = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.title

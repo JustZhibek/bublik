@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Tv</title>
+</head>
+<body>
+<center>
+    <h1>добавить новый фильм</h1>
+
+    <form action="/add-tv/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Добавить фильм в базу данных</button>
+    </form>
+
+
+
+</center>
+</body>
+</html>
