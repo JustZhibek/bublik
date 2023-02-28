@@ -2,22 +2,22 @@
 <center>
     <br>
     <hr>
-    <img src="{{show_id.image.url}}" alt="" width="400" height="300">
+    <img src="{{object.image.url}}" alt="" width="400" height="300">
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">{{show_id.title}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{show_id.quantity}}</h6>
-      <h6 class="card-subtitle mb-2 text-muted">{{show_id.price}} сом</h6>
-    <p class="card-text">{{show_id.description}}</p>
-    <p class="card-link">{{show_id.description}}</p>
-    <p href="#" class="card-link">{{show_id.genre}}</p>
-      <button><a href="/tvshow/{{show_id.id}}/update">Изменить данные</a></button>
-      <button><a href="/tvshow/{{show_id.id}}/delete">Удалить фильм</a></button>
+    <h6 class="card-subtitle mb-2 text-muted">{{object.quantity}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">{{object.price}} сом</h6>
+    <p class="card-text">{{object.description}}</p>
+    <p class="card-link">{{object.description}}</p>
+    <p href="#" class="card-link">{{object.genre}}</p>
+      <button><a href="/tvshow/{{object.id}}/update">Изменить данные</a></button>
+      <button><a href="/tvshow/{{object.id}}/delete">Удалить фильм</a></button>
   </div>
 </div>
     <br>
     <hr>
-    <iframe src="{{show_id.video}}" frameborder="0" width="800" height="640"></iframe>
+    <iframe src="{{object.video}}" frameborder="0" width="800" height="640"></iframe>
 </center>
 >
 

@@ -1,53 +1,82 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from . import models, forms
-
-#не полная инфа
-
-def bookview(request):
-    book = models.Lost.objects.all()
-    return render(request, 'book.html', {'book': book})
-
-#полная инфа
-
-def book_detailview(request, id):
-    book_id = get_object_or_404(models.Lost, id=id)
-    return render(request, 'book_detail.html', {'book_id': book_id})
-
-def create_book_view(request):
-    method = request.method
-    if method == 'POST':
-        form = forms.LostForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('<h2>книга успешно добавлена!!!</h2>')
-
-    else:
-        form = forms.LostForm()
-
-    return render(request, 'add_book.html', {'form': form})
+from django.views import generic
 
 
-#изменение данных
-def update_book_view(request, id):
-    book_object = get_object_or_404(models.LostForm, id=id)
-    if request.method == 'POST':
-        form = forms.LostForm(instance=book_object, data=request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('<h2>Фильм успешно обновлен!</h2>')
-    else:
-        form = forms.LostForm(instance=book_object)
+class LostView(generic.ListView):
+    """
+    Вывод неполной информации
+    """
+    template_name = 'books.html'
+    queryset = models.Lost.objects.all()
 
-    return render(request, 'update_book.html', {
-        'form': form,
-        'object': book_object
-    })
-
-    # Удаление из базы
+    def get_queryset(self):
+        return models.Lost.objects.all()
 
 
-def delete_book_view(request, id):
-    book_object = get_object_or_404(models.Lost, id=id)
-    book_object.delete()
-    return HttpResponse('<h2>книга успешно удалена</h2>')
+class LostFullView(generic.DetailView):
+    """
+    Вывод полной информации по id
+    """
+    template_name = 'books_detail.html'
+
+    def get_object(self, **kwargs):
+        books_id = self.kwargs.get('id')
+        return get_object_or_404(models.Lost, id=books_id)
+
+
+class LostCreateView(generic.CreateView):
+    """
+    Функция для добавления книг в базу данных
+    """
+    template_name = 'add_books.html'
+    form_class = forms.LostForm
+    queryset = models.Lost.objects.all()
+    success_url = '/book/'
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super(LostCreateView, self).form_valid(form=form)
+
+
+class LostUpdateView(generic.UpdateView):
+    """
+    Функция для изменения данных о книге
+    """
+    template_name = 'update_books.html'
+    form_class = forms.LostForm
+    success_url = '/book/'
+
+    def get_object(self, **kwargs):
+        books_id = self.kwargs.get('id')
+        return get_object_or_404(models.Lost, id=books_id)
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super(LostUpdateView, self).form_valid(form=form)
+
+
+class  LostDeleteView(generic.DeleteView):
+    """
+    Функция для удаления книги
+    """
+    template_name = 'books_delete.html'
+    success_url = '/book/'
+
+    def get_object(self, **kwargs):
+        books_id = self.kwargs.get('id')
+        return get_object_or_404(models.Lost, id=books_id)
+
+
+class CreateCommentView(generic.CreateView):
+    """
+    Функция для добавления отзыва к книге
+    """
+    template_name = 'form_for_comment.html'
+    form_class = forms.CommentForm
+    queryset = models.RatingLost.objects.all()
+    success_url = '/book/'
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super(CreateCommentView, self).form_valid(form=form)
