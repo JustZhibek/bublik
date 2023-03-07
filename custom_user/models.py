@@ -21,6 +21,20 @@ GENDER_TYPE = (
 )
 
 
+COUNTRY = (
+    (KYRGYZSTAN, 'KYRGYZSTAN'),
+    (RUSSIA, 'RUSSIA'),
+    (UZBEKISTAN, 'UZBEKISTAN')
+)
+
+EYE = (
+    (BROWN, 'BROWN'),
+    (YELLOW, 'YELLOW'),
+    (GREEN, 'GREEN'),
+    (BLACK, 'BLACK')
+)
+
+
 class CustomUser(User):
     class Meta:
         verbose_name = 'Пользователь'
@@ -30,3 +44,8 @@ class CustomUser(User):
     phone_number = models.CharField('номер телефона', max_length=20)
     age = models.PositiveIntegerField()
     gender = models.IntegerField(choices=GENDER_TYPE, verbose_name='Пол')
+    country = forms.ChoiceField(choices=COUNTRY, max_length=20)
+    telegram = forms.CharField('your telegram nick', max_length=20)
+    born_day = forms.CharField(required=True)
+    eye_color = forms.ChoiceField(choices=EYE, required=True)
+    foot_size = forms.CharField(required=True)

@@ -21,12 +21,31 @@ GENDER_TYPE = (
     (OTHER, "OTHER")
 )
 
+COUNTRY = (
+    (KYRGYZSTAN, 'KYRGYZSTAN'),
+    (RUSSIA, 'RUSSIA'),
+    (UZBEKISTAN, 'UZBEKISTAN')
+)
+
+EYE = (
+    (BROWN, 'BROWN'),
+    (YELLOW, 'YELLOW'),
+    (GREEN, 'GREEN'),
+    (BLACK, 'BLACK')
+)
+
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     phone_number = forms.CharField(required=True)
     age = forms.IntegerField(required=True)
     user_type = forms.ChoiceField(choices=USER_TYPE, required=True)
     gender = forms.ChoiceField(choices=GENDER_TYPE, required=True)
+    country = forms.ChoiceField(choices=COUNTRY, required=True)
+    telegram = forms.CharField(required=True)
+    born_day = forms.CharField(required=True)
+    eye_color = forms.ChoiceField(choices=EYE, required=True)
+    foot_size = forms.CharField(required=True)
+
 
     class Meta:
         model = models.CustomUser
@@ -40,6 +59,11 @@ class RegistrationForm(UserCreationForm):
             "age",
             "user_type",
             "gender",
+            "country",
+            "telegram",
+            "born_day",
+            "eye_color",
+            "foot_size",
         )
 
     def save(self, commit=True):
