@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tv_shows', '0001_initial'),
+        ("tv_shows", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='tvshow',
-            name='created_dates',
+            model_name="tvshow",
+            name="created_dates",
             field=models.DateTimeField(auto_now_add=True, null=True),
         ),
         migrations.AddField(
-            model_name='tvshow',
-            name='updated_dates',
+            model_name="tvshow",
+            name="updated_dates",
             field=models.DateTimeField(auto_now=True, null=True),
         ),
     ]

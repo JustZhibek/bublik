@@ -1,38 +1,23 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm,UsernameField
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    AuthenticationForm,
+    UsernameField,
+)
 from . import models
+
 ADMIN = 1
 VIPClient = 2
 CLIENT = 3
 
-USER_TYPE = (
-    (ADMIN, "ADMIN"),
-    (VIPClient, "VIPClient"),
-    (CLIENT, "CLIENT")
-)
+USER_TYPE = ((ADMIN, "ADMIN"), (VIPClient, "VIPClient"), (CLIENT, "CLIENT"))
 
 MALE = 1
 FEMALE = 2
 OTHER = 3
 
-GENDER_TYPE = (
-    (MALE, "MALE"),
-    (FEMALE, "FEMALE"),
-    (OTHER, "OTHER")
-)
+GENDER_TYPE = ((MALE, "MALE"), (FEMALE, "FEMALE"), (OTHER, "OTHER"))
 
-COUNTRY = (
-    (KYRGYZSTAN, 'KYRGYZSTAN'),
-    (RUSSIA, 'RUSSIA'),
-    (UZBEKISTAN, 'UZBEKISTAN')
-)
-
-EYE = (
-    (BROWN, 'BROWN'),
-    (YELLOW, 'YELLOW'),
-    (GREEN, 'GREEN'),
-    (BLACK, 'BLACK')
-)
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -40,12 +25,6 @@ class RegistrationForm(UserCreationForm):
     age = forms.IntegerField(required=True)
     user_type = forms.ChoiceField(choices=USER_TYPE, required=True)
     gender = forms.ChoiceField(choices=GENDER_TYPE, required=True)
-    country = forms.ChoiceField(choices=COUNTRY, required=True)
-    telegram = forms.CharField(required=True)
-    born_day = forms.CharField(required=True)
-    eye_color = forms.ChoiceField(choices=EYE, required=True)
-    foot_size = forms.CharField(required=True)
-
 
     class Meta:
         model = models.CustomUser
@@ -59,11 +38,6 @@ class RegistrationForm(UserCreationForm):
             "age",
             "user_type",
             "gender",
-            "country",
-            "telegram",
-            "born_day",
-            "eye_color",
-            "foot_size",
         )
 
     def save(self, commit=True):
@@ -76,24 +50,23 @@ class RegistrationForm(UserCreationForm):
 
 ##############################################
 
-class LoginForm(AuthenticationForm):
 
+class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
 
-        username = UsernameField(widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'ваш логин',
-            'id': 'hello'
-        }))
-
-        password = forms.CharField(
-            widget=forms.PasswordInput(
+        username = UsernameField(
+            widget=forms.TextInput(
                 attrs={
-                    'class': "form_control",
-                    'placeholder': 'password',
-                    'id': 'hi'
+                    "class": "form-control",
+                    "placeholder": "ваш логин",
+                    "id": "hello",
                 }
             )
         )
 
+        password = forms.CharField(
+            widget=forms.PasswordInput(
+                attrs={"class": "form_control", "placeholder": "password", "id": "hi"}
+            )
+        )
